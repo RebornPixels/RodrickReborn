@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-bold tracking-tight;
+  }
+  
+  a {
+    @apply transition-colors duration-200;
+  }
+  
+  .prose {
+    @apply max-w-none;
+    @apply prose-headings:font-bold prose-headings:tracking-tight;
+    @apply prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed;
+    @apply prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline;
+  }
+}
