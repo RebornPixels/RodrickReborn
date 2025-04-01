@@ -28,13 +28,8 @@ const projects = [
     description: "A curated collection of my favorite shots and creative captures. Photography is a passion that blends well with my visual storytelling.",
     tags: ["Creative", "Hobby", "Photography"],
     link: "https://reborn-pixels-production.web.app/"
-  }
-  {
-    title: "The 100 DoPe Project",
-    description: "A collaborative farming initiative aimed at generating passive income for members. Includes a modern dashboard and admin panel.",
-    tags: ["Next.js", "MongoDB", "Node.js"],
-    link: "#"
   },
+  
 {
   title: "Windows of Hope Foundation",
   description: "A humanitarian nonprofit focused on empowering communities and refugees. This project includes a modern web redesign and an admin panel for program management.",
