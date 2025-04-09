@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import { Analytics } from "@vercel/analytics/react"
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from './theme-provider';
 import Navbar from './components/Navbar';
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="container mx-auto px-4 py-8">
               {children}
             </main>
+            <Analytics />
           </div>
         </ThemeProvider>
       </body>

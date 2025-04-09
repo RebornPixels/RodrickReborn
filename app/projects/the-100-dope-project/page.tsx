@@ -1,30 +1,68 @@
 'use client';
+
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-export default function The100DopeProjectPage() {
+export default function DTunesPage() {
   return (
-    <motion.section 
-      className="max-w-4xl mx-auto py-16 px-6"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <motion.section
+      className="max-w-5xl mx-auto py-16 px-6 bg-white dark:bg-gray-900 transition-colors"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h1 className="text-4xl font-bold mb-6 text-gray-800 dark:text-white">The 100 DoPe Project</h1>
-      
-      <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-        The 100 DoPe Project is a collaborative farming and investment initiative where 100 members contribute monthly toward building profitable, sustainable agricultural ventures. The project's goal is to generate passive income for each member while fostering community ownership, resilience, and economic growth.
+      {/* Banner Image */}
+      <div className="mb-8 rounded-xl overflow-hidden shadow-md">
+        <Image
+          src="/images/dtunes-cover.jpg"
+          alt="dTunes Preview"
+          width={1200}
+          height={600}
+          className="w-full object-cover"
+        />
+      </div>
+
+      {/* Title & Description */}
+      <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">dTunes</h1>
+      <p className="text-gray-700 dark:text-gray-300 text-lg mb-6">
+        dTunes is a full-stack music platform designed for local artists to upload, share, and manage their music. Features artist verification, payments (Stripe), profiles, and community feedback.
       </p>
 
-      <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-        The platform includes a custom-built dashboard for members to track contributions, view farming progress, receive updates, and interact with administrative announcements. Admins have a dedicated panel to manage financial records, monitor crop cycles, and send notifications to participants.
-      </p>
+      {/* Tags */}
+      <div className="flex flex-wrap gap-3 mb-8">
+        {["Next.js", "Firebase", "Stripe", "Tailwind CSS"].map((tag, i) => (
+          <span key={i} className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 px-3 py-1 text-sm rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
 
-      <div className="flex flex-wrap gap-3 mt-6">
-        <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm px-3 py-1 rounded-full">Next.js</span>
-        <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm px-3 py-1 rounded-full">MongoDB</span>
-        <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm px-3 py-1 rounded-full">Node.js</span>
-        <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm px-3 py-1 rounded-full">Admin Panel</span>
-        <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm px-3 py-1 rounded-full">Community Project</span>
+      {/* Buttons */}
+      <div className="flex gap-4 mb-12">
+        <a
+          href="https://dtunes.example.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-5 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 dark:hover:bg-blue-500 transition"
+        >
+          Live Demo
+        </a>
+        <a
+          href="https://github.com/RebornPixels/dTunes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-5 py-2 border border-gray-300 dark:border-gray-600 rounded-full text-gray-800 dark:text-gray-200 hover:border-blue-400 transition"
+        >
+          GitHub
+        </a>
+      </div>
+
+      {/* Learnings */}
+      <div>
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-2">What I Learned</h2>
+        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          Building dTunes gave me deep experience in Firebase, authentication flows, and payment integration with Stripe. I also focused heavily on real-time UX, responsive design, and maintaining clean component structure.
+        </p>
       </div>
     </motion.section>
   );
