@@ -92,7 +92,7 @@ export default function WindowsOfHopePage() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="https://windowsofhope.netlify.app/"
+              href="https://windowsofhope.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors"
@@ -113,7 +113,7 @@ export default function WindowsOfHopePage() {
           <div className={`relative rounded-2xl overflow-hidden shadow-xl ${isDark ? 'shadow-blue-900/20' : 'shadow-gray-400/30'}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 dark:from-green-400/5 dark:to-blue-400/5" />
             <img
-              src={isDark ? '/windowsofhope-dark.png' : '/windowsofhope-light.png'}
+              src={isDark ? '/images/wohopedark.png' : '/images/wohopelight.png'}
               alt="Windows of Hope Platform"
               className="w-full h-auto rounded-2xl border border-gray-200 dark:border-gray-700"
             />

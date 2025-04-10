@@ -117,7 +117,7 @@ export default function DzalekaOnlinePage() {
           <div className={`relative rounded-2xl overflow-hidden shadow-xl ${isDark ? 'shadow-blue-900/20' : 'shadow-gray-400/30'}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-green-500/10 dark:from-blue-400/5 dark:to-green-400/5" />
             <img
-              src={isDark ? '/dzaleka-dark.png' : '/dzaleka-light.png'}
+              src={isDark ? '/images/dcitydark.png' : '/images/dcitylight.png'}
               alt="Dzaleka Online Platform"
               className="w-full h-auto rounded-2xl border border-gray-200 dark:border-gray-700"
             />

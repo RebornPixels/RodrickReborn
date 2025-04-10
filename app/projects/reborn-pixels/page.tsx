@@ -112,7 +112,7 @@ export default function RebornPixelsPage() {
           <div className={`relative rounded-2xl overflow-hidden shadow-xl ${isDark ? 'shadow-purple-900/20' : 'shadow-gray-400/30'}`}>
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 dark:from-purple-400/5 dark:to-pink-400/5" />
             <img
-              src={isDark ? '/rebornpixels-dark.png' : '/rebornpixels-light.png'}
+              src={isDark ? '/images/rebornpixels.png' : '/images/rebornpixels.png'}
               alt="Reborn Pixels Portfolio"
               className="w-full h-auto rounded-2xl border border-gray-200 dark:border-gray-700"
             />

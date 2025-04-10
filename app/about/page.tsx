@@ -5,11 +5,11 @@ import { FiCode, FiCamera, FiLayers, FiGlobe } from 'react-icons/fi';
 import { useTheme } from '../theme-provider';
 
 const skills = [
-  { name: 'React', category: 'Frontend', level: 90 },
-  { name: 'Next.js', category: 'Fullstack', level: 85 },
-  { name: 'TypeScript', category: 'Language', level: 80 },
-  { name: 'Tailwind CSS', category: 'Styling', level: 95 },
-  { name: 'Node.js', category: 'Backend', level: 75 },
+  { name: 'React', category: 'Frontend', level: 80 },
+  { name: 'Next.js', category: 'Fullstack', level: 75 },
+  { name: 'TypeScript', category: 'Language', level: 70 },
+  { name: 'Tailwind CSS', category: 'Styling', level: 85 },
+  { name: 'Node.js', category: 'Backend', level: 65 },
   { name: 'Firebase', category: 'Database', level: 80 },
   { name: 'Figma', category: 'Design', level: 70 },
   { name: 'Git', category: 'Tools', level: 85 },

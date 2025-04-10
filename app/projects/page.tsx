@@ -11,42 +11,53 @@ const projects = [
     title: "dTunes",
     description: "A full-stack music platform for local artists to upload, share, and monetize their music.",
     tags: ["Next.js", "Firebase", "Stripe", "Tailwind CSS"],
-    imageLight: "/images/dtunes-light.jpg",
-    imageDark: "/images/dtunes-dark.jpg",
+    imageLight: "/images/dzaleka-light.jpg",
+    imageDark: "/images/dzaleka-dark.jpg",
     link: "/projects/dtunes",
-    github: "https://github.com/yourusername/dtunes",
-    demo: "https://dtunes.app"
+    github: "https://github.com/RebornPixels/dTunes",
+    demo: "https://dtunes.vercel.app"
   },
   {
     title: "Dzaleka Online",
     description: "Community social platform connecting refugees through stories, media sharing, and real-time chat.",
     tags: ["Next.js", "Firestore", "Real-time", "Social"],
-    imageLight: "/images/dzaleka-light.jpg",
-    imageDark: "/images/dzaleka-dark.jpg",
+    imageLight: "/images/dcitylight.png",
+    imageDark: "/images/dcitydark.png",
     link: "/projects/dzaleka-online",
-    github: "https://github.com/yourusername/dzaleka-online",
-    demo: "https://dzaleka.online"
+    github: "https://github.com/RebReborn/dzalekaonline",
+    demo: "https://dzalekaonlineh.web.app/"
   },
   {
     title: "Reborn Pixels",
     description: "Creative portfolio showcasing photography and videography work with Cloudinary integration.",
     tags: ["Next.js", "Cloudinary", "Photography", "Admin"],
-    imageLight: "/images/rebornpixels-light.jpg",
-    imageDark: "/images/rebornpixels-dark.jpg",
+    imageLight: "/images/reborn.png",
+    imageDark: "/images/rebornGold.png",
     link: "/projects/reborn-pixels",
     github: "https://github.com/RebornPixels/portfolio",
-    demo: "https://rebornpixels.com"
+    demo: "https://reborn-pixels-production.web.app"
   },
   {
     title: "Windows of Hope",
     description: "Non-profit platform featuring donation processing, volunteer coordination, and impact stories.",
     tags: ["Next.js", "MongoDB", "Non-profit", "Stripe"],
-    imageLight: "/images/woh-light.jpg",
-    imageDark: "/images/woh-dark.jpg",
+    imageLight: "/images/wohopelight.png",
+    imageDark: "/images/wohopedark.png",
     link: "/projects/windows-of-hope",
-    github: "https://github.com/yourusername/windowsofhope",
-    demo: "https://windowsofhope.org"
+    github: "https://github.com/RebReborn/windows-of-hope",
+    demo: "https://windowsofhope.vercel.app"
   },
+
+  {
+    "title": "Telegram Media Downloader",
+    "description": "Browser-based tool to securely download media from Telegram chats and channels. Features authentication with Telegram API, media previews, and batch downloading capabilities.",
+    "tags": ["React", "Telegram API", "GramJS", "Media Downloader", "Web App"],
+    imageLight: "/images/tmdownloader.png",
+    imageDark: "/images/tmdownloader.png",
+    "link": "/projects/tmdownloader",
+    "github": "https://github.com/rebreborn/telegram-media-downloader",
+    "demo": "https://tmdownloader.vercel.app/"
+}
 ];
 
 export default function ProjectsPage() {

@@ -5,14 +5,14 @@ import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import { useTheme } from '../../theme-provider';
 
 const techStack = [
-  { name: 'Next.js', color: 'text-black dark:text-white', bg: 'bg-gray-100 dark:bg-gray-800' },
-  { name: 'Firebase', color: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-100 dark:bg-orange-900/30' },
-  { name: 'Stripe', color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-100 dark:bg-purple-900/30' },
+  { name: 'React', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-100 dark:bg-blue-900/30' },
+  { name: 'Telegram API', color: 'text-cyan-600 dark:text-cyan-400', bg: 'bg-cyan-100 dark:bg-cyan-900/30' },
+  { name: 'GramJS', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-100 dark:bg-emerald-900/30' },
   { name: 'Tailwind CSS', color: 'text-cyan-600 dark:text-cyan-400', bg: 'bg-cyan-100 dark:bg-cyan-900/30' },
   { name: 'Framer Motion', color: 'text-pink-600 dark:text-pink-400', bg: 'bg-pink-100 dark:bg-pink-900/30' },
 ];
 
-export default function DTunesPage() {
+export default function TelegramMediaPage() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -31,14 +31,15 @@ export default function DTunesPage() {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800 dark:text-white">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-500 dark:from-blue-400 dark:to-purple-400">
-              dTunes
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 dark:from-blue-400 dark:to-teal-400">
+              Telegram Media Downloader
             </span>
           </h1>
           
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-            A full-stack music platform empowering local artists to upload, share, and monetize their music.
-            Featuring artist profiles, custom playlists, Stripe payments, and a comprehensive admin dashboard.
+            A secure browser-based tool that lets you download media from Telegram chats and channels.
+            Features authentication with Telegram API, media previews, batch downloading, and works entirely
+            client-side for maximum privacy.
           </p>
           
           <div className="flex flex-wrap gap-3 mb-8">
@@ -59,7 +60,7 @@ export default function DTunesPage() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="https://github.com/RebornPixels/dtunes"
+              href="https://github.com/rebreborn/telegram-media-downloader"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-3 bg-gray-800 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
@@ -70,7 +71,7 @@ export default function DTunesPage() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="https://dtunes.vercel.app"
+              href="https://tmdownloader.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-500 transition-colors"
@@ -89,10 +90,10 @@ export default function DTunesPage() {
           className="relative"
         >
           <div className={`relative rounded-2xl overflow-hidden shadow-xl ${isDark ? 'shadow-blue-900/20' : 'shadow-gray-400/30'}`}>
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 dark:from-blue-400/5 dark:to-purple-400/5" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-teal-500/10 dark:from-blue-400/5 dark:to-teal-400/5" />
             <img
-              src={isDark ? '/images/dtunes.png' : '/images/dtunes.png'}
-              alt="dTunes Dashboard"
+              src={isDark ? '/images/tmdownloader.png' : '/images/tmdownloader.png'}
+              alt="Telegram Media Downloader Interface"
               className="w-full h-auto rounded-2xl border border-gray-200 dark:border-gray-700"
             />
           </div>
@@ -123,10 +124,40 @@ export default function DTunesPage() {
             }}
             className="absolute -right-6 -bottom-6 hidden lg:block"
           >
-            <div className="w-20 h-20 rounded-full bg-purple-500/20 dark:bg-purple-400/20 blur-xl" />
+            <div className="w-20 h-20 rounded-full bg-teal-500/20 dark:bg-teal-400/20 blur-xl" />
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Additional Features Section */}
+      <motion.div 
+        className="mt-24 grid md:grid-cols-3 gap-8"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+      >
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Secure Authentication</h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            Uses Telegram's official API with client-side only authentication. Your credentials never leave your browser.
+          </p>
+        </div>
+        
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Media Previews</h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            View thumbnails of all media files before downloading. Supports photos, videos, and documents.
+          </p>
+        </div>
+        
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700">
+          <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Batch Downloading</h3>
+          <p className="text-gray-600 dark:text-gray-300">
+            Download multiple files at once with progress tracking. Works with private chats and channels.
+          </p>
+        </div>
+      </motion.div>
     </motion.section>
   );
 }
