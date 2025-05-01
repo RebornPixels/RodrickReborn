@@ -57,7 +57,30 @@ const projects = [
     "link": "/projects/tmdownloader",
     "github": "https://github.com/rebreborn/telegram-media-downloader",
     "demo": "https://tmdownloader.vercel.app/"
+},
+
+{
+  "title": "LoopHire",
+  "description": "LoopHire is a social job referral platform that connects job seekers with professionals willing to refer them. Users can browse jobs, request referrals, and manage referral status with a clean, real-time interface built on React and Firebase.",
+  "tags": ["React", "Firebase", "Job Board", "Referral Platform", "Web App"],
+  "imageLight": "/images/loophire.png",
+  "imageDark": "/images/loophire.png",
+  "link": "/projects/loophire",
+  "github": "https://github.com/rebreborn/referral",
+  "demo": "https://loophire.netlify.app/"
+},
+
+{
+  "title": "Instagram Non-Followers Checker",
+  "description": "A browser-based tool that helps Instagram users identify who isn't following them back. Simply paste or upload your followers and following lists to generate a list of non-followers.",
+  "tags": ["Instagram", "Non-Followers", "Browser Tool", "Social Media"],
+  "image": "/images/instagram-non-followers-checker.png",
+  "link": "/projects/instagram-non-followers-checker",
+  "github": "",
+  "demo": "https://instagram-non-followers.vercel.app/"
 }
+
+
 ];
 
 export default function ProjectsPage() {
