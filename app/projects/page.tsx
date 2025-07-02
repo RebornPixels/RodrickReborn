@@ -74,11 +74,44 @@ const projects = [
   "title": "Instagram Non-Followers Checker",
   "description": "A browser-based tool that helps Instagram users identify who isn't following them back. Simply paste or upload your followers and following lists to generate a list of non-followers.",
   "tags": ["Instagram", "Non-Followers", "Browser Tool", "Social Media"],
-  "image": "/images/instagram-non-followers-checker.png",
+  "imageLight": "/images/instagram.png",
+  "imageDark": "/images/instagram.png",
   "link": "/projects/instagram-non-followers-checker",
   "github": "",
   "demo": "https://instagram-non-followers.vercel.app/"
+},
+
+{
+  "title": "Malawi Maketi",
+  "description": "An e-commerce marketplace tailored for Malawi, featuring local mobile money (Airtel API), vendor stores, product ratings, and localized logistics.",
+  "tags": ["React", "Firebase", "Mobile Money", "E-Commerce", "Airtel API"],
+  "imageLight": "/images/maketi_light.png",
+  "imageDark": "/images/maketi_dark.png",
+  "link": "/projects/maketi",
+  "github": "https://github.com/rebreborn/malawi-maketi",
+  "demo": "https://maketi.vercel.app"
+},
+{
+  title: "FtBuddy",
+  description: "Voice-powered AI fitness assistant with workout tracking, nutrition analysis, AI-generated coaching, and real-time gym support.",
+  tags: ["React Native", "Firebase", "Voice AI", "Fitness", "TTS"],
+  imageLight: "/images/ftbuddy_light.png",
+  imageDark: "/images/ftbuddy_dark.png",
+  link: "/projects/ftbuddy",
+  github: "https://github.com/rebreborn/fitbuddy",
+  demo: "https://ftbuddy.netlify.app/"
+},
+{
+  title: "Kibembe Language App",
+  description: "A community-driven language learning app for Kibembe featuring audio/image contributions, AI validation, and fun learning games.",
+  tags: ["React", "Firebase", "Cloudinary", "Language Learning", "AI"],
+  imageLight: "/images/kibembe_light.png",
+  imageDark: "/images/kibembe_dark.png",
+  link: "/projects/kibembe",
+  github: "https://github.com/rebreborn/kibembe",
+  demo: "https://kibembe.netlify.app/"
 }
+
 
 
 ];
