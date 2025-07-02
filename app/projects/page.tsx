@@ -110,7 +110,18 @@ const projects = [
   link: "/projects/kibembe",
   github: "https://github.com/rebreborn/kibembe",
   demo: "https://kibembe.netlify.app/"
+},
+
+{
+  title: "Swahili Number Converter",
+  description: "A simple tool that converts numeric values into written Swahili words. Useful for education, language learning, and localization support.",
+  tags: ["React", "Swahili", "Language Tools", "Converter", "Education"],
+  imageLight: "/images/swahili2words.png",
+  imageDark: "/images/swahili2words_2.png",
+  link: "/projects/swahili-number-converter",
+  github: "https://github.com/RebReborn/swahili2words"
 }
+
 
 
 
