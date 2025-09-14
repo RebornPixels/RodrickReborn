@@ -98,7 +98,7 @@ const projects = [
   imageLight: "/images/ftbuddy_light.png",
   imageDark: "/images/ftbuddy_dark.png",
   link: "/projects/ftbuddy",
-  github: "https://github.com/rebreborn/fitbuddy",
+  github: "https://github.com/rebreborn/",
   demo: "https://ftbuddy.netlify.app/"
 },
 {
@@ -108,8 +108,8 @@ const projects = [
   imageLight: "/images/kibembe_light.png",
   imageDark: "/images/kibembe_dark.png",
   link: "/projects/kibembe",
-  github: "https://github.com/rebreborn/kibembe",
-  demo: "https://kibembe.netlify.app/"
+  github: "https://github.com/rebreborn/",
+  demo: "https://kibembe.com/"
 },
 
 {
@@ -120,7 +120,48 @@ const projects = [
   imageDark: "/images/swahili2words_2.png",
   link: "/projects/swahili-number-converter",
   github: "https://github.com/RebReborn/swahili2words"
-}
+},
+
+{
+  title: "Lunax Decor",
+  description: "An event and wedding decor service offering elegant cocktail party setups, floral arrangements, and personalized design. Additional services include mixology, drink servicing, and professional photography/videography through Reborn Pixels.",
+  tags: ["Business", "Event Decor", "Weddings", "Branding", "Creative Services"],
+  imageLight: "/images/lunax_light.png",
+  imageDark: "/images/lunax_dark.png",
+  link: "/projects/lunaxdecor",
+  demo: "https://lunaxdecor.com/"
+},
+
+{
+  title: "MoodShare",
+  description: "A social media app for sharing moods, moments, and expressions. Users can post images, short videos, and status updates to connect and engage with friends in a creative way.",
+  tags: ["React Native", "Firebase", "Social Media", "Mobile App", "Content Sharing"],
+  imageLight: "/images/moodshare_light.png",
+  imageDark: "/images/moodshare_dark.png",
+  link: "/projects/moodshare",
+  github: "https://github.com/rebreborn/",
+  demo: "https://moodshare.netlify.app/"
+},
+
+{
+  title: "Reborn Pixels",
+  description: "A creative photography and videography portfolio showcasing events, weddings, portraits, and brand visuals. Focused on capturing authentic moments and delivering high-quality visuals for clients and collaborations.",
+  tags: ["Photography", "Videography", "Portfolio", "Creative Services", "Branding"],
+  imageLight: "/images/rebornpixels_light.png",
+  imageDark: "/images/rebornpixels_dark.png",
+  link: "/projects/reborn-netflix",
+  demo: "https://rebornpixels.netlify.app/",
+},
+
+{
+  title: "DoPeVest",
+  description: "A community-driven investment platform where 100 members pool resources to generate passive income through strategic investments in agriculture, livestock, and agro-processing ventures.",
+  tags: ["React", "Firebase", "Tailwind CSS", "Community Investment", "Netlify"],
+  imageLight: "/images/dopevest_light.png",
+  imageDark: "/images/dopevest_dark.png",
+  link: "/projects/dopevest",
+  demo: "https://dopevest.netlify.app/",
+},
 
 
 
