@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd ../.. && pnpm --filter @workspace/rodrick-reborn run build",
+  "outputDirectory": "dist/public",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
