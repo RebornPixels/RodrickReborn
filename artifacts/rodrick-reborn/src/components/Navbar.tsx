@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'wouter';
 import { ThemeToggle } from '../theme-toggle';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isAdmin, logout } = useAuth();
 
   return (
     <nav className="sticky top-0 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md p-4 shadow-sm flex justify-between items-center">
@@ -12,11 +14,24 @@ export default function Navbar() {
       </Link>
 
       <div className="flex items-center gap-6">
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 items-center">
           <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</Link>
           <Link href="/about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</Link>
           <Link href="/projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</Link>
           <Link href="/contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</Link>
+          {isAdmin && (
+            <>
+              <Link href="/admin/dashboard" className="text-xs px-2.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors">
+                Admin
+              </Link>
+              <button
+                onClick={logout}
+                className="text-xs text-gray-500 dark:text-gray-400 hover:text-red-500 dark:hover:text-red-400 transition-colors"
+              >
+                Sign out
+              </button>
+            </>
+          )}
         </div>
 
         <button
@@ -43,6 +58,16 @@ export default function Navbar() {
             <Link href="/about" onClick={() => setMobileMenuOpen(false)}>About</Link>
             <Link href="/projects" onClick={() => setMobileMenuOpen(false)}>Projects</Link>
             <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            {isAdmin && (
+              <>
+                <Link href="/admin/dashboard" onClick={() => setMobileMenuOpen(false)} className="text-blue-600 dark:text-blue-400">
+                  Admin Dashboard
+                </Link>
+                <button onClick={logout} className="text-left text-red-500 dark:text-red-400">
+                  Sign out
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
