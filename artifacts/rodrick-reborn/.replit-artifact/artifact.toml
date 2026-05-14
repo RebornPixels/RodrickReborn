@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Rodrick Reborn Portfolio"
+version = "1.0.0"
+id = "artifacts/rodrick-reborn"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19824
+
+[services.development]
+run = "pnpm --filter @workspace/rodrick-reborn run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/rodrick-reborn", "run", "build" ]
+publicDir = "artifacts/rodrick-reborn/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19824"
+BASE_PATH = "/"
