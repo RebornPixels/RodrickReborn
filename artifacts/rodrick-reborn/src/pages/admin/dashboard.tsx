@@ -13,7 +13,7 @@ import { ensureAbsolute } from "../../lib/urlUtils";
 import {
   FiPlus, FiEdit2, FiTrash2, FiLogOut, FiExternalLink,
   FiGithub, FiX, FiCheck, FiSearch, FiArrowUp, FiArrowDown,
-  FiEye, FiDownload, FiGrid, FiList, FiAlertTriangle, FiHome,
+  FiEye, FiEyeOff, FiDownload, FiGrid, FiList, FiAlertTriangle, FiHome,
 } from "react-icons/fi";
 
 export type Project = {
@@ -27,12 +27,14 @@ export type Project = {
   github: string;
   demo: string;
   order: number;
+  hidden?: boolean;
 };
 
 const emptyProject: Omit<Project, "id"> = {
   title: "", description: "", tags: [],
   imageLight: "", imageDark: "",
   link: "", github: "", demo: "", order: 0,
+  hidden: false,
 };
 
 type ViewMode = "list" | "grid";
@@ -117,6 +119,7 @@ export default function AdminDashboard() {
       title: p.title, description: p.description, tags: p.tags,
       imageLight: p.imageLight, imageDark: p.imageDark,
       link: p.link, github: p.github, demo: p.demo, order: p.order,
+      hidden: p.hidden ?? false,
     });
     setTagsInput(p.tags.join(", "));
     setModalOpen(true);
@@ -182,6 +185,18 @@ export default function AdminDashboard() {
     }
   };
 
+  const toggleHidden = async (project: Project) => {
+    if (!project.id) return;
+    const next = !project.hidden;
+    try {
+      await updateDoc(doc(db, "projects", project.id), { hidden: next, updatedAt: serverTimestamp() });
+      setProjects(prev => prev.map(p => p.id === project.id ? { ...p, hidden: next } : p));
+      showToast(next ? "Project hidden from public" : "Project is now visible");
+    } catch {
+      showToast("Failed to update visibility", "error");
+    }
+  };
+
   const handleLogout = async () => {
     await logout();
     navigate("/");
@@ -236,11 +251,12 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-6 py-8">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
           {[
             { label: "Total Projects", value: projects.length, color: "blue" },
             { label: "With Live Demo", value: projects.filter(p => p.demo).length, color: "green" },
             { label: "With GitHub", value: projects.filter(p => p.github).length, color: "purple" },
+            { label: "Hidden", value: projects.filter(p => p.hidden).length, color: "red" },
             { label: "Search Results", value: filtered.length, color: "orange" },
           ].map(({ label, value, color }) => (
             <div key={label} className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 p-4">
@@ -248,7 +264,8 @@ export default function AdminDashboard() {
               <p className={`text-2xl font-bold ${
                 color === "blue" ? "text-blue-600" :
                 color === "green" ? "text-green-600" :
-                color === "purple" ? "text-purple-600" : "text-orange-500"
+                color === "purple" ? "text-purple-600" :
+                color === "red" ? "text-red-500" : "text-orange-500"
               }`}>{value}</p>
             </div>
           ))}
@@ -346,7 +363,14 @@ export default function AdminDashboard() {
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-800 dark:text-white truncate">{p.title}</h3>
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <h3 className={`font-semibold truncate ${p.hidden ? "text-gray-400 dark:text-gray-500" : "text-gray-800 dark:text-white"}`}>{p.title}</h3>
+                    {p.hidden && (
+                      <span className="flex-shrink-0 inline-flex items-center gap-1 text-xs px-2 py-0.5 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full font-medium border border-red-200 dark:border-red-800">
+                        <FiEyeOff className="w-3 h-3" /> Hidden
+                      </span>
+                    )}
+                  </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{p.description}</p>
                   <div className="flex flex-wrap gap-1 mt-1.5">
                     {p.tags.slice(0, 4).map((t) => (
@@ -358,9 +382,9 @@ export default function AdminDashboard() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-1 flex-shrink-0 opacity-60 group-hover:opacity-100 transition-opacity">
-                  {p.link && (
+                  {p.link && !p.hidden && (
                     <a href={p.link} target="_blank" rel="noopener noreferrer"
-                      className="p-2 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors" title="Preview">
+                      className="p-2 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors" title="Preview public page">
                       <FiEye className="w-4 h-4" />
                     </a>
                   )}
@@ -376,6 +400,11 @@ export default function AdminDashboard() {
                       <FiGithub className="w-4 h-4" />
                     </a>
                   )}
+                  <button onClick={() => toggleHidden(p)}
+                    className={`p-2 rounded-lg transition-colors ${p.hidden ? "text-red-400 hover:text-green-500 hover:bg-green-50 dark:hover:bg-green-900/20" : "text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"}`}
+                    title={p.hidden ? "Make visible to public" : "Hide from public"}>
+                    {p.hidden ? <FiEye className="w-4 h-4" /> : <FiEyeOff className="w-4 h-4" />}
+                  </button>
                   <button onClick={() => openEdit(p)}
                     className="p-2 rounded-lg text-gray-400 hover:text-yellow-500 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors" title="Edit">
                     <FiEdit2 className="w-4 h-4" />
@@ -403,16 +432,28 @@ export default function AdminDashboard() {
                 </div>
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="font-semibold text-gray-800 dark:text-white text-sm leading-snug">{p.title}</h3>
-                    <span className="text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono flex-shrink-0">#{p.order}</span>
+                    <h3 className={`font-semibold text-sm leading-snug ${p.hidden ? "text-gray-400 dark:text-gray-500" : "text-gray-800 dark:text-white"}`}>{p.title}</h3>
+                    <div className="flex items-center gap-1.5 flex-shrink-0">
+                      {p.hidden && (
+                        <span className="inline-flex items-center gap-1 text-xs px-1.5 py-0.5 bg-red-50 dark:bg-red-900/30 text-red-500 dark:text-red-400 rounded font-medium">
+                          <FiEyeOff className="w-2.5 h-2.5" />
+                        </span>
+                      )}
+                      <span className="text-xs text-gray-400 bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono">#{p.order}</span>
+                    </div>
                   </div>
                   <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 mb-3">{p.description}</p>
-                  <div className="flex gap-2 justify-end">
-                    {p.link && (
-                      <a href={p.link} target="_blank" rel="noopener noreferrer" className="p-1.5 text-gray-400 hover:text-blue-500 transition-colors"><FiEye className="w-3.5 h-3.5" /></a>
+                  <div className="flex gap-2 justify-end items-center">
+                    {p.link && !p.hidden && (
+                      <a href={p.link} target="_blank" rel="noopener noreferrer" className="p-1.5 text-gray-400 hover:text-blue-500 transition-colors" title="Preview"><FiEye className="w-3.5 h-3.5" /></a>
                     )}
-                    <button onClick={() => openEdit(p)} className="p-1.5 text-gray-400 hover:text-yellow-500 transition-colors"><FiEdit2 className="w-3.5 h-3.5" /></button>
-                    <button onClick={() => setDeleteModal(p)} className="p-1.5 text-gray-400 hover:text-red-500 transition-colors"><FiTrash2 className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => toggleHidden(p)}
+                      className={`p-1.5 transition-colors ${p.hidden ? "text-red-400 hover:text-green-500" : "text-gray-400 hover:text-red-500"}`}
+                      title={p.hidden ? "Make visible" : "Hide from public"}>
+                      {p.hidden ? <FiEye className="w-3.5 h-3.5" /> : <FiEyeOff className="w-3.5 h-3.5" />}
+                    </button>
+                    <button onClick={() => openEdit(p)} className="p-1.5 text-gray-400 hover:text-yellow-500 transition-colors" title="Edit"><FiEdit2 className="w-3.5 h-3.5" /></button>
+                    <button onClick={() => setDeleteModal(p)} className="p-1.5 text-gray-400 hover:text-red-500 transition-colors" title="Delete"><FiTrash2 className="w-3.5 h-3.5" /></button>
                   </div>
                 </div>
               </motion.div>
@@ -480,6 +521,23 @@ export default function AdminDashboard() {
                     Leave the route link blank and a URL will be auto-generated using the project's Firestore ID (e.g. <code className="font-mono">/projects/abc123</code>).
                   </p>
                 )}
+
+                {/* Visibility toggle */}
+                <div className="flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                  <div>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Hide from public</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                      {form.hidden ? "This project is hidden and won't appear on the portfolio." : "This project is visible on the public portfolio."}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setForm(f => ({ ...f, hidden: !f.hidden }))}
+                    className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none ${form.hidden ? "bg-red-500" : "bg-gray-300 dark:bg-gray-600"}`}
+                  >
+                    <span className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${form.hidden ? "translate-x-5" : "translate-x-0"}`} />
+                  </button>
+                </div>
               </div>
 
               <div className="flex justify-end gap-3 p-6 border-t border-gray-200 dark:border-gray-800 sticky bottom-0 bg-white dark:bg-gray-900">

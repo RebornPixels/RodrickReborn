@@ -65,7 +65,7 @@ export default function ProjectDetailPage() {
     );
   }
 
-  if (notFound || !project) {
+  if (notFound || !project || project.hidden) {
     return (
       <div className="max-w-2xl mx-auto py-20 px-4 text-center">
         <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">Project Not Found</h1>

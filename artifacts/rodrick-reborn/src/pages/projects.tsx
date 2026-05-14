@@ -38,9 +38,9 @@ export default function ProjectsPage() {
         const q = query(collection(db, 'projects'), orderBy('order', 'asc'));
         const snap = await Promise.race([getDocs(q), timeout]);
         if (cancelled || !snap) return;
-        const firestoreProjects = (snap as Awaited<ReturnType<typeof getDocs>>).docs.map(
-          d => ({ id: d.id, ...d.data() } as Project)
-        );
+        const firestoreProjects = (snap as Awaited<ReturnType<typeof getDocs>>).docs
+          .map(d => ({ id: d.id, ...d.data() } as Project))
+          .filter(p => !p.hidden);
         if (firestoreProjects.length > 0) {
           setProjects(firestoreProjects);
         }

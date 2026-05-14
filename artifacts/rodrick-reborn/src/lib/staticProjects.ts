@@ -8,6 +8,7 @@ export type ProjectData = {
   github: string;
   demo: string;
   order: number;
+  hidden?: boolean;
 };
 
 export const STATIC_PROJECTS: ProjectData[] = [
