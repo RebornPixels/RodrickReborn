@@ -10,6 +10,7 @@ import ContactPage from "./pages/contact";
 import NotFoundPage from "./pages/not-found";
 import AdminLoginPage from "./pages/admin/login";
 import AdminDashboard from "./pages/admin/dashboard";
+import ProjectDetailPage from "./pages/projects/detail";
 import DTunesPage from "./pages/projects/dtunes";
 import DzalekaOnlinePage from "./pages/projects/dzaleka-online";
 import WindowsOfHopePage from "./pages/projects/windows-of-hope";
@@ -49,6 +50,8 @@ function Router() {
               <Route path="/about" component={AboutPage} />
               <Route path="/projects" component={ProjectsPage} />
               <Route path="/contact" component={ContactPage} />
+
+              {/* Named static detail pages */}
               <Route path="/projects/dtunes" component={DTunesPage} />
               <Route path="/projects/dzaleka-online" component={DzalekaOnlinePage} />
               <Route path="/projects/windows-of-hope" component={WindowsOfHopePage} />
@@ -66,6 +69,10 @@ function Router() {
               <Route path="/projects/lunaxdecor" component={LunaxDecorPage} />
               <Route path="/projects/photography" component={PhotographyPage} />
               <Route path="/projects/the-100-dope-project" component={The100DopePage} />
+
+              {/* Dynamic catch-all for Firestore-created projects */}
+              <Route path="/projects/:id" component={ProjectDetailPage} />
+
               <Route component={NotFoundPage} />
             </Switch>
           </main>
