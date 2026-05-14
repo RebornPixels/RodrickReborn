@@ -338,14 +338,11 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* Thumbnail */}
-                {(p.imageLight || p.imageDark) ? (
-                  <img src={p.imageLight || p.imageDark} alt={p.title}
-                    className="w-20 h-14 object-cover rounded-lg border border-gray-200 dark:border-gray-700 flex-shrink-0" />
-                ) : (
-                  <div className="w-20 h-14 rounded-lg border border-dashed border-gray-300 dark:border-gray-700 flex-shrink-0 bg-gray-50 dark:bg-gray-800 flex items-center justify-center">
-                    <span className="text-xs text-gray-400">No img</span>
-                  </div>
-                )}
+                <img
+                  src={p.imageLight || p.imageDark || '/images/project-placeholder.svg'}
+                  alt={p.title}
+                  className="w-20 h-14 object-cover rounded-lg border border-gray-200 dark:border-gray-700 flex-shrink-0 bg-gray-100 dark:bg-gray-800"
+                />
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
@@ -398,13 +395,11 @@ export default function AdminDashboard() {
               <motion.div key={p.id} layout initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.04 }}
                 className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden group hover:border-blue-300 dark:hover:border-blue-700 transition-colors">
                 <div className="h-40 bg-gray-100 dark:bg-gray-800 overflow-hidden">
-                  {(p.imageLight || p.imageDark) ? (
-                    <img src={p.imageLight || p.imageDark} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <FiGrid className="w-8 h-8" />
-                    </div>
-                  )}
+                  <img
+                    src={p.imageLight || p.imageDark || '/images/project-placeholder.svg'}
+                    alt={p.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <div className="p-4">
                   <div className="flex items-start justify-between gap-2 mb-2">

@@ -77,7 +77,9 @@ export default function ProjectDetailPage() {
     );
   }
 
-  const image = isDark ? (project.imageDark || project.imageLight) : (project.imageLight || project.imageDark);
+  const image =
+    (isDark ? (project.imageDark || project.imageLight) : (project.imageLight || project.imageDark))
+    || '/images/project-placeholder.svg';
 
   return (
     <motion.div
@@ -89,11 +91,9 @@ export default function ProjectDetailPage() {
         <FiArrowLeft /> All Projects
       </Link>
 
-      {image && (
-        <div className="rounded-2xl overflow-hidden shadow-xl mb-8 border border-gray-200 dark:border-gray-700">
-          <img src={image} alt={project.title} className="w-full h-72 object-cover" />
-        </div>
-      )}
+      <div className="rounded-2xl overflow-hidden shadow-xl mb-8 border border-gray-200 dark:border-gray-700">
+        <img src={image} alt={project.title} className="w-full h-72 object-cover" />
+      </div>
 
       <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">{project.title}</h1>
 

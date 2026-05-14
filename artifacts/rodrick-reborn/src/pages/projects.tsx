@@ -87,7 +87,10 @@ export default function ProjectsPage() {
           >
             <div className="relative h-60 overflow-hidden bg-gray-100 dark:bg-gray-800">
               <img
-                src={isDark ? (project.imageDark || project.imageLight) : (project.imageLight || project.imageDark)}
+                src={
+                  (isDark ? (project.imageDark || project.imageLight) : (project.imageLight || project.imageDark))
+                  || '/images/project-placeholder.svg'
+                }
                 alt={project.title}
                 className="w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-90"
               />
