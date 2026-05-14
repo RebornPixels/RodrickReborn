@@ -6,6 +6,7 @@ import { FiGithub, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
 import { db } from '../../lib/firebase';
 import { useTheme } from '../../theme-provider';
 import { STATIC_PROJECTS } from '../../lib/staticProjects';
+import { ensureAbsolute } from '../../lib/urlUtils';
 
 type Project = {
   id: string;
@@ -111,7 +112,7 @@ export default function ProjectDetailPage() {
       <div className="flex flex-wrap gap-4">
         {project.github && (
           <a
-            href={project.github}
+            href={ensureAbsolute(project.github)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-600 text-white rounded-lg transition-colors font-medium"
@@ -121,7 +122,7 @@ export default function ProjectDetailPage() {
         )}
         {project.demo && (
           <a
-            href={project.demo}
+            href={ensureAbsolute(project.demo)}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"

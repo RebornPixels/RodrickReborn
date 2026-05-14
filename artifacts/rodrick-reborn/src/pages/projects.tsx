@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { STATIC_PROJECTS } from '../lib/staticProjects';
+import { ensureAbsolute } from '../lib/urlUtils';
 
 type Project = {
   id: string;
@@ -109,12 +110,12 @@ export default function ProjectsPage() {
 
               <div className="flex gap-3 mt-4">
                 {project.github && (
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <a href={ensureAbsolute(project.github)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     <FiGithub className="w-4 h-4" /> Code
                   </a>
                 )}
                 {project.demo && (
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <a href={ensureAbsolute(project.demo)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-sm text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     <FiExternalLink className="w-4 h-4" /> Live
                   </a>
                 )}

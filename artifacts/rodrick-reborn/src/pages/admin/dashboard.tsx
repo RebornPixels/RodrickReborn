@@ -9,6 +9,7 @@ import {
 import { db } from "../../lib/firebase";
 import { useAuth } from "../../contexts/AuthContext";
 import { STATIC_PROJECTS } from "../../lib/staticProjects";
+import { ensureAbsolute } from "../../lib/urlUtils";
 import {
   FiPlus, FiEdit2, FiTrash2, FiLogOut, FiExternalLink,
   FiGithub, FiX, FiCheck, FiSearch, FiArrowUp, FiArrowDown,
@@ -124,7 +125,12 @@ export default function AdminDashboard() {
   const handleSave = async () => {
     if (!form.title.trim()) return showToast("Title is required", "error");
     setSaving(true);
-    const data = { ...form, tags: tagsInput.split(",").map((t) => t.trim()).filter(Boolean) };
+    const data = {
+      ...form,
+      tags: tagsInput.split(",").map((t) => t.trim()).filter(Boolean),
+      github: ensureAbsolute(form.github),
+      demo: ensureAbsolute(form.demo),
+    };
     try {
       if (editingProject?.id) {
         await updateDoc(doc(db, "projects", editingProject.id), { ...data, updatedAt: serverTimestamp() });
@@ -362,13 +368,13 @@ export default function AdminDashboard() {
                     </a>
                   )}
                   {p.demo && (
-                    <a href={p.demo} target="_blank" rel="noopener noreferrer"
+                    <a href={ensureAbsolute(p.demo)} target="_blank" rel="noopener noreferrer"
                       className="p-2 rounded-lg text-gray-400 hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors" title="Live demo">
                       <FiExternalLink className="w-4 h-4" />
                     </a>
                   )}
                   {p.github && (
-                    <a href={p.github} target="_blank" rel="noopener noreferrer"
+                    <a href={ensureAbsolute(p.github)} target="_blank" rel="noopener noreferrer"
                       className="p-2 rounded-lg text-gray-400 hover:text-gray-700 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" title="GitHub">
                       <FiGithub className="w-4 h-4" />
                     </a>
