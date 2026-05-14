@@ -3,6 +3,7 @@ import { ThemeProvider } from "./theme-provider";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import HomePage from "./pages/home";
 import AboutPage from "./pages/about";
 import ProjectsPage from "./pages/projects";
@@ -31,9 +32,9 @@ import The100DopePage from "./pages/projects/the-100-dope-project";
 
 function Router() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
       <Switch>
-        {/* Admin routes — no Navbar */}
+        {/* Admin routes — standalone, no Navbar/Footer */}
         <Route path="/admin/login" component={AdminLoginPage} />
         <Route path="/admin/dashboard">
           <ProtectedRoute>
@@ -41,10 +42,10 @@ function Router() {
           </ProtectedRoute>
         </Route>
 
-        {/* Public routes — with Navbar */}
+        {/* Public routes — with Navbar + Footer */}
         <Route>
           <Navbar />
-          <main className="container mx-auto px-4 py-8">
+          <main className="flex-1 container mx-auto px-4 py-8">
             <Switch>
               <Route path="/" component={HomePage} />
               <Route path="/about" component={AboutPage} />
@@ -76,6 +77,7 @@ function Router() {
               <Route component={NotFoundPage} />
             </Switch>
           </main>
+          <Footer />
         </Route>
       </Switch>
     </div>
